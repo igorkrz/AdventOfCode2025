@@ -44,26 +44,22 @@ class PuzzleCommand extends Command
             return Command::FAILURE;
         }
 
+        $array = $solution->read();
+
         switch ($part) {
             case 1:
-                $array = $solution->read();
                 $result = $solution->solution1($array);
-                $solution->write($result);
                 break;
             case 2:
-                $array = $solution->read();
                 $result = $solution->solution2($array);
-                $solution->write($result);
                 break;
             default:
-                $array = $solution->read();
-
                 $result = $solution->solution1($array);
                 $solution->write($result);
-
                 $result = $solution->solution2($array);
-                $solution->write($result);
         }
+
+        $solution->write($result);
 
         return Command::SUCCESS;
     }
