@@ -31,14 +31,9 @@ class Solution extends AbstractPuzzle
 
         foreach ($ranges as $range) {
             $splitRange = explode('-', $range);
-            $first = $splitRange[0];
-            $second = $splitRange[1];
+            $range = range($splitRange[0], $splitRange[1]);
 
-            $matches = preg_grep($regexPattern, range($first, $second));
-            if (count($matches) === 0) {
-                continue;
-            }
-
+            $matches = preg_grep($regexPattern, $range);
             foreach ($matches as $match) {
                 $invalidIds[] = $match;
             }
