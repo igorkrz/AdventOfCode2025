@@ -23,13 +23,12 @@ class PuzzleCommand extends Command
 
     protected function configure(): void
     {
-        $currentDay = (new DateTime())->format("d");
-        $currentSolutionPart = 1;
+        $currentDay = new DateTime()->format("d");
 
         $this
             ->setHelp('This command lets you run puzzles by day')
             ->addOption('day', 'd', InputOption::VALUE_REQUIRED, "Puzzle day", $currentDay)
-            ->addOption('part', 'p', InputOption::VALUE_REQUIRED, "Puzzle solution part", $currentSolutionPart);
+            ->addOption('part', 'p', InputOption::VALUE_OPTIONAL, "Puzzle solution part");
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -57,8 +56,13 @@ class PuzzleCommand extends Command
                 $solution->write($result);
                 break;
             default:
-                $output->writeln(sprintf('<error>No method found for puzzle %s</error>', $part));
-                return Command::FAILURE;
+                $array = $solution->read();
+
+                $result = $solution->solution1($array);
+                $solution->write($result);
+
+                $result = $solution->solution2($array);
+                $solution->write($result);
         }
 
         return Command::SUCCESS;
