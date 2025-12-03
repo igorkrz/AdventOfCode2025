@@ -11,7 +11,6 @@ class Solution extends AbstractPuzzle
     public function solution1(array $input = []): string
     {
         $sum = 0;
-
         foreach ($input as $line) {
             $sum += (int) $this->maxAfterRemovingDigitCount($line, strlen($line) - 2);
         }
@@ -32,7 +31,6 @@ class Solution extends AbstractPuzzle
     function maxAfterRemovingDigitCount(string $input, int $digitCount): string
     {
         $stack = [];
-
         foreach (str_split($input) as $d) {
             while ($digitCount > 0 && $stack && end($stack) < $d) {
                 array_pop($stack);
