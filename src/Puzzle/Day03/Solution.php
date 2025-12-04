@@ -28,7 +28,7 @@ class Solution extends AbstractPuzzle
         return (string) $sum;
     }
 
-    function maxAfterRemovingDigitCount(string $input, int $digitCount): string
+    private function maxAfterRemovingDigitCount(string $input, int $digitCount): string
     {
         $stack = [];
         foreach (str_split($input) as $d) {
