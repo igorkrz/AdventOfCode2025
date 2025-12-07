@@ -13,7 +13,7 @@ class Solution extends AbstractPuzzle
         $regexPattern = '#^([1-9]\d*?)\1$#';
         $invalidIds = $this->getInvalidIds($input, $regexPattern);
 
-        return (string) $this->getInvalidIdsSum($invalidIds);
+        return (string) array_sum($invalidIds);
     }
 
     public function solution2(array $input = []): string
@@ -21,7 +21,7 @@ class Solution extends AbstractPuzzle
         $regexPattern = '#^([1-9]\d*?)\1+$#';
         $invalidIds = $this->getInvalidIds($input, $regexPattern);
 
-        return (string) $this->getInvalidIdsSum($invalidIds);
+        return (string) array_sum($invalidIds);
     }
 
     private function getInvalidIds(array $input, string $regexPattern): array
@@ -40,10 +40,5 @@ class Solution extends AbstractPuzzle
         }
 
         return $invalidIds;
-    }
-
-    private function getInvalidIdsSum(array $invalidIds): int
-    {
-        return array_reduce($invalidIds, fn(int $carry, int $item) => $carry + $item, 0);
     }
 }
