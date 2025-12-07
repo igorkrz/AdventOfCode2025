@@ -5,6 +5,8 @@ services:
         volumes:
             - .:/var/www/html
         working_dir: /var/www/html
+        command: >
+            sh -c "composer install --optimize-autoloader && php-fpm"
 
     nginx:
         image: nginx:1.25
